@@ -5,4 +5,4 @@ plugin based twitch bot written in python
 Plugins must be *.py files in the plugins folder.
 They must contain a function called execute
 which takes a string input, processes it
-and returns a string.
+and returns a string to be sent to twitch chat.

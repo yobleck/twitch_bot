@@ -20,6 +20,7 @@
 # TODO logging
 # TODO argparse
 # TODO file paths for irc.py are probably broken
+# TODO plugin load order
 
 import os
 import sys
@@ -27,9 +28,6 @@ import glob
 import importlib
 
 import irc
-import plugins
-
-
 
 
 username = "test_user"
@@ -38,7 +36,7 @@ channel_name = "test channel"
 
 def load_plugins():  # Loaded alphabetically
     imp_list = []
-    plugins_path = plugins.__path__._path[0]  # Get plugin path
+    plugins_path = sys.path[0] + "/plugins"
     sys.path.append(plugins_path)  # Make it importable
 
     for f in glob.glob(plugins_path + "/*.py"):  # Get list of .py files

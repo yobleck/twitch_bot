@@ -1,3 +1,4 @@
 {
-"!hello": "world"
+"!hello": "world",
+"!help": "This is a twitch bot made by yobleck, written in python with drop in plugin support. https://github.com/yobleck/twitch_bot"
 }
