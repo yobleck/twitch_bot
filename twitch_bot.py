@@ -57,8 +57,9 @@ def main():
 
         for p in plugins:
             to_send = p.execute(chat_text)
-            print(to_send)
-            #chat.send_text(to_send)
+            if to_send: # TODO type check?
+                print(to_send)
+                #chat.send_text(to_send)
         break
     #chat.part(channel_name)
     #chat.quit()
