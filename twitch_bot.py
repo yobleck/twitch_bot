@@ -21,17 +21,28 @@
 # TODO argparse
 # TODO file paths for irc.py are probably broken
 # TODO plugin load order
+# TODO list users watch time (privacy issue? no user tracking?)
+# TODO shout out plugin
+# TODO timer/reminder bot (hydration etc.)
+# TODO song requests
+# TODO polls
+# TODO blacklist words
+# TODO moderator list so some commands can only be run by them
+
+# TODO twitch api integration
+# TODO change stream name and info
+# TODO shout out, blacklist, moderators?
 
 import os
 import sys
 import glob
 import importlib
 
-import irc
+import irc, utils
 
 
 username = "test_user"
-channel_name = "test channel"
+channel_name = "#test_channel"
 
 
 def load_plugins():  # Loaded alphabetically
@@ -51,12 +62,12 @@ def main():
     plugins = load_plugins()
 
     while True:
-        chat_text = "!hello" #chat.get_text()
+        chat_text = ":yobleck! !hello" #chat.get_text()
         if chat_text == "nothing new":
             continue
 
         for p in plugins:
-            to_send = p.execute(chat_text)
+            to_send = p.execute(chat_text, utils)
             if to_send: # TODO type check?
                 print(to_send)
                 #chat.send_text(to_send)

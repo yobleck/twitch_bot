@@ -15,14 +15,11 @@
  # along with this program. If not, see <http://www.gnu.org/licenses/>.
  #
 
-import json
-
-f = open("./plugins/basic_commands.json", "r")
-cmds = json.load(f)
+f = open("./plugins/banned_words.txt", "r")
+banned_words = f.read()
 f.close()
 
-
 def execute(input_str, utils):
-    for k in cmds.keys():
-        if k in input_str:
-            return cmds[k]
+    if input_str in banned_words:
+        #TODO mute message via twitch api?
+        return "tsk tsk"

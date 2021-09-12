@@ -1,7 +1,3 @@
- # 
- # This file is part of the XXX distribution (https://github.com/yobleck/twitch_bot).
- # Copyright (c) 2021 yobleck.
- # 
  # This program is free software: you can redistribute it and/or modify  
  # it under the terms of the GNU General Public License as published by  
  # the Free Software Foundation, version 3.
@@ -15,14 +11,23 @@
  # along with this program. If not, see <http://www.gnu.org/licenses/>.
  #
 
-import json
 
-f = open("./plugins/basic_commands.json", "r")
-cmds = json.load(f)
-f.close()
+import re
+pat = re.compile(r"^:(.*?)!")
+
+def get_username(input_str):
+    try:
+        return pat.match(input_str)[0][1:-1]
+    except:
+        return None
 
 
-def execute(input_str, utils):
-    for k in cmds.keys():
-        if k in input_str:
-            return cmds[k]
+def is_user_mod(input_str):
+    f = open("./moderator_list.txt", "r")  # Opens file every time for real time editing
+    mod_list = f.read().splitlines()
+    f.close()
+    if get_username(input_str) in mod_list:
+        return True
+    return False
+
+# TODO twitch api integration
